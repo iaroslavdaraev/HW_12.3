@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Operation:
     def __init__(
             self,
@@ -10,7 +13,7 @@ class Operation:
             to: str
     ):
         self.pk = pk
-        self.date = date
+        self.date = self.convert_date(date)
         self.state = state
         self.operation_amount = operation_amount
         self.description = description
@@ -34,3 +37,17 @@ class Operation:
             payment = payment.split()
             number_card = payment[-1]
             return f"{' '.join(payment[:-1])} {number_card[:4]} {number_card[4:6]}** **** {number_card[12:]}"
+
+    def convert_date(self, date):
+        """
+        Конвертирует дату из международного формата
+        """
+        return datetime.fromisoformat(date)
+
+    def __str__(self):
+        """
+        Выводит операцию в требуемом виде
+        """
+        return (f"{datetime.strftime(self.date, '%d.%m.%Y')} {self.description}\n"
+                f"{self.from_} -> {self.to}\n"
+                f"{self.operation_amount['amount']} {self.operation_amount['currency']['name']}\n")

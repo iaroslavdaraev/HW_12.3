@@ -21,7 +21,7 @@ def get_operations_instances(operations):
     """
     operations_instances = []
     for operation in operations:
-        if operation:
+        if operation and operation['state'] == 'EXECUTED':
             operations_instance = Operation(
                 pk=operation['id'],
                 date=operation['date'],
@@ -33,3 +33,17 @@ def get_operations_instances(operations):
             )
             operations_instances.append(operations_instance)
     return operations_instances
+
+
+def get_date(operation):
+    """
+    Получает дату
+    """
+    return operation.date
+
+
+def sort_date(operations):
+    """
+    Сортирует даты в обратном порядке
+    """
+    return sorted(operations, key=get_date, reverse=True)
