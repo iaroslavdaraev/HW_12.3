@@ -14,5 +14,23 @@ class Operation:
         self.state = state
         self.operation_amount = operation_amount
         self.description = description
-        self.from_ = from_
-        self.to = to
+        if from_:
+            self.from_ = self.convert_payment(from_)
+        else:
+            self.from_ = ''
+        self.to = self.convert_payment(to)
+
+    def convert_payment(self, payment):
+        """
+        Функция принимает номер банковского счета и карты, и маскирует его.
+        :param payment: from_, to
+        :return: **XXXX, XXXX XX** **** XXXX
+        """
+        if payment.startswith('Счет'):
+            payment = payment.split()
+            number_bank_check = payment[-1]
+            return f"{' '.join(payment[:-1])} **{number_bank_check[-4:]}"
+        else:
+            payment = payment.split()
+            number_card = payment[-1]
+            return f"{' '.join(payment[:-1])} {number_card[:4]} {number_card[4:6]}** **** {number_card[12:]}"
