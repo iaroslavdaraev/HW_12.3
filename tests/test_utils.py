@@ -1,5 +1,5 @@
 from Models.operation import Operation
-from utils import get_operations_instances, get_date
+from utils import get_operations_instances
 
 
 def test_get_operations_instances(operations):
