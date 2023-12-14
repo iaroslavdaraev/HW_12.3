@@ -10,7 +10,7 @@ def test_get_operations_instances(operations):
     assert len(operations_instances) == len(operations) - 1
 
     operations_instances = get_operations_instances([{}])
-    assert  operations_instances == []
+    assert operations_instances == []
 
     operations_instances = get_operations_instances([])
     assert operations_instances == []
