@@ -1,5 +1,5 @@
-from Models import operation
-from Models.operation import Operation
+import operation
+from operation import Operation
 from tests.conftest import operations
 
 

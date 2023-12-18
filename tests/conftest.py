@@ -1,6 +1,6 @@
 import pytest
 
-from Models.operation import Operation
+from operation import Operation
 
 
 @pytest.fixture

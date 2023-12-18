@@ -1,6 +1,6 @@
 import json
 
-from Models.operation import Operation
+from operation import Operation
 
 
 def get_all_operations(path):
